@@ -1,7 +1,7 @@
 
-# Triviapeli
+# TriviaApp
 
-Jotain tekstiä, **lihavoitua** ja *kursiivia* tekstiä
+## Dokumentaatio
 
 [Työaikakirjanpito](https://github.com/ruuskal/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
