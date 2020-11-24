@@ -1,14 +1,16 @@
 
 package triviaapp.domain;
 
+import java.util.List;
+
 
 public class Question {
     
     private String content;
-    private String options;
+    private List <String> options;
     private String answer;
     
-    public Question(String content, String options, String answer){
+    public Question(String content, List options, String answer){
         this.answer=answer;
         this.content=content;
         this.options=options;
@@ -17,7 +19,7 @@ public class Question {
     public String getContent(){
         return this.content;
     }
-    public String getOptions(){
+    public List getOptions(){
         return this.options;
     }
     public String getAnswer(){

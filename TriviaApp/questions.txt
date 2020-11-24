@@ -1,3 +1,4 @@
 What is 2+2?;1 , 2, 3, 4;4
 What is 3+4;2, 3, 7, 19;7
 What comes after Monday?;Tuesday, Wednesday, Thursday, Saturday;Tuesday
+What is true?; false, false, true, false;true

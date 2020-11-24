@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +11,11 @@ public class QuestionTest {
     
     @Before
     public void setUp(){
-        question=new Question ("Which is 2", "1,2,3,4", "2");
+        List <String> options=new ArrayList<>();
+        options.add("1");
+        options.add("2");
+        options.add("3");
+        question=new Question ("Which is 2", options, "2");
     }
     
     @Test
@@ -19,11 +25,16 @@ public class QuestionTest {
     
     @Test
     public void optionsAreCorrect(){
-        assertEquals("1,2,3,4", question.getOptions());
+        List <String> options=new ArrayList<>();
+        options.add("1");
+        options.add("2");
+        options.add("3");
+        assertEquals(options, question.getOptions());
     }
     
     @Test
     public void answerIsCorrect(){
         assertEquals("2", question.getAnswer());
     }
+    
 }

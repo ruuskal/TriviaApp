@@ -18,9 +18,26 @@ public class GameService {
         return question;
     }
         
-    public String getOptions(int i){
-        String options=questions.get(i).getOptions();
+    public List getOptions(int i){
+        List options=questions.get(i).getOptions();
         return options;
+    }
+    
+        
+    public String getA(int i){
+        return questions.get(i).getOptions().get(0).toString();
+    }
+    
+    public String getB(int i){
+        return questions.get(i).getOptions().get(1).toString();
+    }
+    
+    public String getC(int i){
+        return questions.get(i).getOptions().get(2).toString();
+    }
+    
+    public String getD(int i){
+        return questions.get(i).getOptions().get(3).toString();
     }
         
     public boolean isCorrect(int i, String answer){
@@ -35,5 +52,14 @@ public class GameService {
     public String getCorrect(int i){
         String correct=questions.get(i).getAnswer();
         return correct;
+    }
+    
+    public int getQuestionsSize(){
+        return questions.size();
+    }
+    
+    public String getNextQuestion(int i){
+        String question=questions.get(i).getContent();
+        return question;
     }
 }
