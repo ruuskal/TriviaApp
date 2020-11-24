@@ -12,3 +12,8 @@
 
 Sovelluksen testit suoritetaan komennollaa "mvn test" ja testikattavuusraportti
 luodaan komennolla "mvn jacoco:report".
+
+## Checkstyle
+
+Tiedostoon checkstyle.xml määrittelemät tarkastukset voidaan suorittaa komennolla 
+"mvn jxr:jxr checkstyle:checkstyle".

@@ -7,11 +7,11 @@ Käyttäjä saa pisteitä vastaamalla kysymyksiin oikein. Täysiin pisteisiin
 yltänyt käyttäjä saa tallettaa nimimerkkinsä top-pelaajat näkymään.
 
 ## Toiminnallisuus
-* Käyttäjä aloittaa pelin nappia painamalla.
+* Käyttäjä aloittaa pelin nappia painamalla. (tehty)
 * Kysymykset näkyvät käyttäjälle yksitellen. Käyttäjä vastaa kysymykseen
-valitsemalla oikean vaihtoehdon. Sovellus kertoo heti, menikö vastaus oikein
+valitsemalla oikean vaihtoehdon. Sovellus kertoo heti, menikö vastaus oikein (tehty) 
 ja kuinka monta pistettä käyttäjä ansaitsi. 
-* Kysymykset, vastaukset ja kysymysten pistearvot tallennetaan sovelluksen
+* Kysymykset, vastaukset (tehty) ja kysymysten pistearvot tallennetaan sovelluksen
 kehitysvaiheessa tiedostoon. 
 * Kymmenen kysymyksen jälkeen peli päättyy ja käyttäjä saa tallettaa nimensä 
 parhaimpien pelaajien listaan, jos pääsi täysiin pisteisiin. 
