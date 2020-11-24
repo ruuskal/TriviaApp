@@ -2,7 +2,7 @@
 package triviaapp.ui;
 
 import java.util.Scanner;
-import triviaapp.dao.QuestionDao;
+import triviaapp.dao.FileQuestionDao;
 import triviaapp.domain.GameService;
 
 

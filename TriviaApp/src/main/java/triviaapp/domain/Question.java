@@ -7,22 +7,22 @@ import java.util.List;
 public class Question {
     
     private String content;
-    private List <String> options;
+    private List<String> options;
     private String answer;
     
-    public Question(String content, List options, String answer){
-        this.answer=answer;
-        this.content=content;
-        this.options=options;
+    public Question(String content, List options, String answer) {
+        this.answer = answer;
+        this.content = content;
+        this.options = options;
     }
     
-    public String getContent(){
+    public String getContent() {
         return this.content;
     }
-    public List getOptions(){
+    public List getOptions() {
         return this.options;
     }
-    public String getAnswer(){
+    public String getAnswer() {
         return this.answer;
     }
 }

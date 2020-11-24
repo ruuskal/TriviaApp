@@ -7,18 +7,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import triviaapp.dao.QuestionDao;
+import triviaapp.dao.FileQuestionDao;
 import triviaapp.domain.GameService;
 import triviaapp.domain.Question;
 
 public class GameServiceTest {
-    
-    private List <Question> questions;
-    private GameService gameService;
-    private QuestionDao questionDao;
+
+    GameService gameService;
+    FakeQuestionDao questionDao;
     
     @Before
     public void setUp(){
+        List <Question> questions=new ArrayList<>();
         List <String> options=new ArrayList<>();
         options.add("1");
         options.add("2");
@@ -33,21 +33,19 @@ public class GameServiceTest {
         questions.add(questionOne);
         questions.add(questionTwo);
         
-        gameService=new GameService(questionDao);
+        gameService=new GameService(new FakeQuestionDao(questions));
     }
-    
-    @Test
-    public void gameServiceIsNotEmpty(){
-        
-    }
-    
+      
   
-//    @Test
-//    public void isCorrectReturnsTrueWhenCorrect(){
-//        assertTrue(gameService.isCorrect(0, "2"));
-//    }
-//    
+    @Test
+    public void isCorrectReturnsTrueWhenCorrect(){
+        assertTrue(gameService.isCorrect(0, "2"));
+    }
+    
+    @Test 
+    public void questionListsizeIsCorrect(){
+        assertEquals(2, gameService.getQuestionsSize());
+    }
+  
 
-
- 
 }

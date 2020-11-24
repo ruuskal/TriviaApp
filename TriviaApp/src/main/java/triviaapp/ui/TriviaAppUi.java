@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import triviaapp.dao.FileQuestionDao;
 import triviaapp.dao.QuestionDao;
 import triviaapp.domain.GameService;
 
@@ -25,7 +26,7 @@ public class TriviaAppUi extends Application{
     
     @Override
     public void init() throws Exception{
-        QuestionDao fileQuestion =new QuestionDao("questions.txt");
+        QuestionDao fileQuestion =new FileQuestionDao("questions.txt");
         gameService=new GameService(fileQuestion);
     }
     
@@ -62,7 +63,7 @@ public class TriviaAppUi extends Application{
             borderPane.setPrefSize(400, 300);
             GridPane options=new GridPane();
        
-            Label questionText =new Label(gameService.getNextQuestion(i));
+            Label questionText =new Label(gameService.getQuestionText(i));
             resultText=new Label("");
             borderPane.setTop(questionText);
             borderPane.setBottom(resultText);
@@ -70,7 +71,7 @@ public class TriviaAppUi extends Application{
            
 
             
-            questionText.setText(gameService.getNextQuestion(i));
+            questionText.setText(gameService.getQuestionText(i));
             buttonA.setText(gameService.getA(i));     
             buttonB.setText(gameService.getB(i));
             buttonC.setText(gameService.getC(i));
