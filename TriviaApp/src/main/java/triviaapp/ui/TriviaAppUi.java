@@ -1,5 +1,6 @@
 package triviaapp.ui;
 
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +27,7 @@ public class TriviaAppUi extends Application{
     
     @Override
     public void init() throws Exception{
+        
        
         QuestionDao fileQuestion =new FileQuestionDao("questions.txt");
         gameService=new GameService(fileQuestion);
