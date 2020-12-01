@@ -26,6 +26,7 @@ public class TriviaAppUi extends Application{
     
     @Override
     public void init() throws Exception{
+       
         QuestionDao fileQuestion =new FileQuestionDao("questions.txt");
         gameService=new GameService(fileQuestion);
     }
