@@ -12,12 +12,15 @@ public class FileQuestionDao implements QuestionDao {
     private String file;
     private List<Question> questions;
     
-    public FileQuestionDao(String file) throws Exception {
+    public FileQuestionDao(String file) {
         this.file = file;
         String content = "";
         String answer = "";
         this.questions = new ArrayList<>();
         
+       
+    try 
+    {
         Scanner reader = new Scanner(new File(this.file));
         
         while (reader.hasNextLine()) {
@@ -34,6 +37,9 @@ public class FileQuestionDao implements QuestionDao {
             }
             questions.add(new Question(content, options, answer));
         }
+    } catch (Exception e){
+        System.out.println("Virhe: "+e.getMessage());
+    }
     }
     
     public List getQuestions() {
@@ -42,6 +48,7 @@ public class FileQuestionDao implements QuestionDao {
     
     @Override
     public int getQuestionSize() {
+        System.out.println("size "+this.questions.size());
         return this.questions.size();
     }
     

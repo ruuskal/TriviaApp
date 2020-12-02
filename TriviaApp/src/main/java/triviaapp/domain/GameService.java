@@ -1,14 +1,30 @@
 package triviaapp.domain;
 
 import java.util.List;
-import triviaapp.dao.QuestionDao;
+import triviaapp.dao.FileQuestionDao;
 
 public class GameService {
     
-    private QuestionDao questiondao;
+    private FileQuestionDao questiondao;
+    private Player player;
     
-    public GameService(QuestionDao questiondao) {
+    public GameService(FileQuestionDao questiondao) {
         this.questiondao = questiondao;
+        this.player = new Player("Test");
+    }
+    
+    public boolean isOver(int i) {
+        if(i == this.questiondao.getQuestionSize()){
+            System.out.println("questionSoze "+ questiondao.getQuestionSize());
+            return true;
+        }else { 
+            return false;
+        }
+    }
+    
+        
+    public int getPoints(){
+        return player.getPoints();
     }
     
     public String getContent(int i) {
@@ -22,25 +38,24 @@ public class GameService {
     }
     
         
-    public String getA(int i) {
-        return questiondao.getQuestion(i).getOptions().get(0).toString();
+    public String getNextQuestion(int i) {
+        String question = questiondao.getQuestion(i).getContent();
+        return question;
     }
-    
-    public String getB(int i) {
-        return questiondao.getQuestion(i).getOptions().get(1).toString();
+       
+    public String getOption(int questionInt, int optionInt ) {
+        return questiondao.getQuestion(questionInt).getOptions().get(optionInt).toString();
     }
-    
-    public String getC(int i) {
-        return questiondao.getQuestion(i).getOptions().get(2).toString();
-    }
-    
-    public String getD(int i) {
-        return questiondao.getQuestion(i).getOptions().get(3).toString();
+         
+    public boolean hasBeenAnswered(int i) {
+        return questiondao.getQuestion(i).isAnswered();
     }
         
-    public boolean isCorrect(int i, String answer) {
+    public boolean isCorrect(String answer, int i) {
+        questiondao.getQuestion(i).setAnswered();
         String rigthAnswer = questiondao.getQuestion(i).getAnswer();
         if (answer.trim().matches(rigthAnswer)) {
+            player.addPoints(10);
             return true;
         } else {
             return false;
