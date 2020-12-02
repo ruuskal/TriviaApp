@@ -1,5 +1,6 @@
 package triviaapp.ui;
 
+import java.io.InputStream;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -22,7 +23,10 @@ public class TriviaAppUi extends Application{
      
     @Override
     public void init() throws Exception {
-        FileQuestionDao fileQuestion = new FileQuestionDao("questions.txt");
+     
+        InputStream input = TriviaAppUi.class.getResourceAsStream("/questions.txt");
+        
+        FileQuestionDao fileQuestion = new FileQuestionDao(input);
         gameService = new GameService(fileQuestion);
     }
     
