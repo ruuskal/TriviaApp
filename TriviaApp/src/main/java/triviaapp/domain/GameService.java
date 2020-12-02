@@ -1,28 +1,28 @@
 package triviaapp.domain;
 
 import java.util.List;
-import triviaapp.dao.FileQuestionDao;
+import triviaapp.dao.QuestionDao;
 
 public class GameService {
     
-    private FileQuestionDao questiondao;
+    private QuestionDao questiondao;
     private Player player;
     
-    public GameService(FileQuestionDao questiondao) {
+    public GameService(QuestionDao questiondao) {
         this.questiondao = questiondao;
         this.player = new Player("Test");
     }
     
     public boolean isOver(int i) {
-        if(i == this.questiondao.getQuestionSize()-1){
+        if (i == this.questiondao.getQuestionSize() - 1) {
             return true;
-        }else { 
+        } else { 
             return false;
         }
     }
     
         
-    public int getPoints(){
+    public int getPoints() {
         return player.getPoints();
     }
     
@@ -42,7 +42,7 @@ public class GameService {
         return question;
     }
        
-    public String getOption(int questionInt, int optionInt ) {
+    public String getOption(int questionInt, int optionInt) {
         return questiondao.getQuestion(questionInt).getOptions().get(optionInt).toString();
     }
          

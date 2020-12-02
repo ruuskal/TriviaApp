@@ -37,10 +37,11 @@ public class GameServiceTest {
     }
       
   
-    @Test
-    public void isCorrectReturnsTrueWhenCorrect(){
-        assertTrue(gameService.isCorrect(0, "2"));
-    }
+//    @Test
+//    public void isCorrectReturnsTrueWhenCorrect(){
+//        assertTrue(gameService.isCorrect(0, "2"));
+//    }
+    
     
     @Test 
     public void questionListsizeIsCorrect(){

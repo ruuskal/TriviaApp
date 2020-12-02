@@ -27,11 +27,11 @@ public class Question {
     public String getAnswer() {
         return this.answer;
     }
-    public void setAnswered(){
-        this.answered=true;
+    public void setAnswered() {
+        this.answered = true;
     }
     
-    public boolean isAnswered(){
+    public boolean isAnswered() {
         return this.answered;
     }
 }

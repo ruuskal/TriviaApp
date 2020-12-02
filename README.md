@@ -1,6 +1,7 @@
 
 # TriviaApp
 
+TriviaApp on peli, jossa pelaajalta kysytään triviatietoutta mittaavia kysymyksiä. Jokaiseen kysymykseen annetaan vastausvaihtoehdot ja oikea vastaus tuo pelaajalle pisteitä.
 
 ## Dokumentaatio
 
@@ -18,3 +19,4 @@ luodaan komennolla "mvn jacoco:report".
 
 Tiedostoon checkstyle.xml määrittelemät tarkastukset voidaan suorittaa komennolla 
 "mvn jxr:jxr checkstyle:checkstyle".
+

@@ -17,8 +17,7 @@ public class FileQuestionDao implements QuestionDao {
         this.stream = inputStream;
         this.questions = new ArrayList<>();
         
-        try 
-        {
+        try {
             Scanner reader = new Scanner(this.stream);
         
             while (reader.hasNextLine()) {

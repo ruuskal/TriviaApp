@@ -11,11 +11,11 @@ public class Player {
         this.points = 0;
     }
     
-    public void addPoints(int pointsToAdd){
-        this.points+=pointsToAdd;
+    public void addPoints(int pointsToAdd) {
+        this.points += pointsToAdd;
     }
     
-    public int getPoints(){
+    public int getPoints() {
         return this.points;
     }
     
