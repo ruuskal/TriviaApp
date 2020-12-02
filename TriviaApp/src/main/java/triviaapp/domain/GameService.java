@@ -15,7 +15,6 @@ public class GameService {
     
     public boolean isOver(int i) {
         if(i == this.questiondao.getQuestionSize()){
-            System.out.println("questionSoze "+ questiondao.getQuestionSize());
             return true;
         }else { 
             return false;

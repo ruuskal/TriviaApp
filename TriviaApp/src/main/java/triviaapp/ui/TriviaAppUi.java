@@ -1,6 +1,5 @@
 package triviaapp.ui;
 
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -22,27 +21,27 @@ public class TriviaAppUi extends Application{
     private int currentQuestion;
      
     @Override
-    public void init() throws Exception{
-        FileQuestionDao fileQuestion =new FileQuestionDao("questions.txt");
-        gameService=new GameService(fileQuestion);
+    public void init() throws Exception {
+        FileQuestionDao fileQuestion = new FileQuestionDao("questions.txt");
+        gameService = new GameService(fileQuestion);
     }
     
     @Override
     public void start(Stage primaryStage) {
         
-        HBox startPane= new HBox(100);
+        HBox startPane = new HBox(100);
       
-        Button startButton=new Button("Start");
+        Button startButton = new Button("Start");
         
         startPane.getChildren().addAll(startButton);
         startScene = new Scene(startPane);
                
-        currentQuestion=-1;
-        startButton.setOnAction(e->{
+        currentQuestion = -1;
+        startButton.setOnAction(e -> {
             
-            if(gameService.isOver(currentQuestion)){
+            if(gameService.isOver(currentQuestion)) {
                 BorderPane endView = new BorderPane();
-                endView.setCenter(new Label("Game Over! You got "+gameService.getPoints() +" points!"));
+                endView.setCenter(new Label("Game Over! You got " + gameService.getPoints() + " points!"));
                 
                 Scene endScene=new Scene(endView);
                 primaryStage.setScene(endScene);
@@ -53,7 +52,6 @@ public class TriviaAppUi extends Application{
                BorderPane gameView=new BorderPane();
                gameView.setPrefSize(300, 200);
                gameView.setPadding(new Insets(10, 10, 10, 10));
-               System.out.println("currentquestion "+ currentQuestion);
                gameView.setTop(new Label("Question: " + gameService.getNextQuestion(currentQuestion)));
 
                startButton.setText("Next!!");

@@ -14,8 +14,6 @@ public class FileQuestionDao implements QuestionDao {
     
     public FileQuestionDao(String file) {
         this.file = file;
-        String content = "";
-        String answer = "";
         this.questions = new ArrayList<>();
         
        
@@ -28,8 +26,8 @@ public class FileQuestionDao implements QuestionDao {
              
             String row = reader.nextLine();
             String [] parts = row.split(";");
-            content = parts[0];
-            answer = parts[2];
+            String content = parts[0];
+            String answer = parts[2];
             String [] optionParts = parts[1].split(",");
             
             for (int i = 0; i < 4; i++) {
@@ -38,7 +36,7 @@ public class FileQuestionDao implements QuestionDao {
             questions.add(new Question(content, options, answer));
         }
     } catch (Exception e){
-        System.out.println("Virhe: "+e.getMessage());
+        System.out.println("Exception: " + e.getMessage());
     }
     }
     
@@ -48,7 +46,6 @@ public class FileQuestionDao implements QuestionDao {
     
     @Override
     public int getQuestionSize() {
-        System.out.println("size "+this.questions.size());
         return this.questions.size();
     }
     
