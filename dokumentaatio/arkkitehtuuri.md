@@ -1,1 +1,1 @@
-![class diagram](https://github.com/ruuskal/ot-harjoitustyo/tree/master/dokumentaatio/classDiagram)
+![class diagram](https://github.com/ruuskal/ot-harjoitustyo/blob/master/dokumentaatio/classDiagram.png)
