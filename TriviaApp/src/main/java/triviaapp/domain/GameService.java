@@ -8,13 +8,13 @@ public class GameService {
     private QuestionDao questiondao;
     private Player player;
     
-    public GameService(QuestionDao questiondao) {
+    public GameService(QuestionDao questiondao, Player player) {
         this.questiondao = questiondao;
-        this.player = new Player("Test");
+        this.player = player;
     }
     
     public boolean isOver(int i) {
-        if (i == this.questiondao.getQuestionSize() - 1) {
+        if (i >= this.questiondao.getQuestionSize() - 1) {
             return true;
         } else { 
             return false;

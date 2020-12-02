@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import triviaapp.dao.FileQuestionDao;
 import triviaapp.domain.GameService;
+import triviaapp.domain.Player;
 
 
 public class TriviaAppUi extends Application{
@@ -25,9 +26,9 @@ public class TriviaAppUi extends Application{
     public void init() throws Exception {
      
         InputStream input = TriviaAppUi.class.getResourceAsStream("/questions.txt");
-        
+        Player testPlayer = new Player ("Tester");
         FileQuestionDao fileQuestion = new FileQuestionDao(input);
-        gameService = new GameService(fileQuestion);
+        gameService = new GameService(fileQuestion, testPlayer);
     }
     
     @Override

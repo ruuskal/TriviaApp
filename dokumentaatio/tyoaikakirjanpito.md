@@ -8,7 +8,8 @@ Päivä  | Aika    | Kuvaus
 17.11. | 2 | Sovelluksen perustoiminnallisuuden muokkaus, gitHubiin vieminen ja testien lisääminen
 23.11. | 4 | Graafisen käyttöliittymän luominen
 24.11. | 3 | Testiluokkien lisääminen, checkstylen käyttöönotto
+30.11. | 2 | Koodin selkeyttäminen
 1.12. | 3 | Koodin selkeyttäminen, pistesysteemin luominen, jar:n luominen
-2.12. | 4 | Luokkakaavion luominen, yritys saada ohjelma lukemaan tiedostosta
+2.12. | 5 | Luokka- ja sekvenssikaavioiden luominen, yritys saada ohjelma lukemaan tiedostosta, testien lisäys
 ----- |---- | ------
-Yht. | 24 
+Yht. | 27 

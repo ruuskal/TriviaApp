@@ -9,31 +9,35 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import triviaapp.dao.FileQuestionDao;
 import triviaapp.domain.GameService;
+import triviaapp.domain.Player;
 import triviaapp.domain.Question;
 
 public class GameServiceTest {
 
     GameService gameService;
-    FakeQuestionDao questionDao;
+    Question questionZero;
+    Question questionOne;
+    Player player;
     
     @Before
     public void setUp(){
+        player = new Player ("test");
         List <Question> questions=new ArrayList<>();
-        List <String> options=new ArrayList<>();
-        options.add("1");
-        options.add("2");
-        options.add("3");
-        Question questionOne=new Question ("Which is 2", options, "2");
-        ArrayList<String>optionsTwo=new ArrayList <>();
-        optionsTwo.add("a");
-        optionsTwo.add("b");
-        optionsTwo.add("c");
-        Question questionTwo=new Question("Which is a", optionsTwo, "a");
+        List <String> optionsZero=new ArrayList<>();
+        optionsZero.add("1");
+        optionsZero.add("2");
+        optionsZero.add("3");
+        this.questionZero = new Question ("Which is 2", optionsZero, "2");
+        ArrayList<String>optionsOne = new ArrayList <>();
+        optionsOne.add("a");
+        optionsOne.add("b");
+        optionsOne.add("c");
+        this.questionOne = new Question("Which is a", optionsOne, "a");
                 
+        questions.add(questionZero);
         questions.add(questionOne);
-        questions.add(questionTwo);
         
-        gameService=new GameService(new FakeQuestionDao(questions));
+        gameService=new GameService(new FakeQuestionDao(questions), player);
     }
       
   
@@ -41,12 +45,35 @@ public class GameServiceTest {
 //    public void isCorrectReturnsTrueWhenCorrect(){
 //        assertTrue(gameService.isCorrect(0, "2"));
 //    }
+    @Test
+    public void isCorrectAddsPointsWhenRight(){
+        gameService.isCorrect("2", 0);
+        assertEquals(10, player.getPoints());
+    }
+    
+    @Test
+    public void isCorrectDontAddPointsWhenNotCorrect(){
+        gameService.isCorrect("5", 0);
+        assertEquals(0, player.getPoints());
+    }
+    
+    @Test
+    public void isCorrectSetsQuestionAnswered(){
+        gameService.isCorrect("2", 0);
+        assertEquals(true, questionZero.isAnswered());
+    }
     
     
     @Test 
     public void questionListsizeIsCorrect(){
         assertEquals(2, gameService.getQuestionsSize());
     }
+    
+    @Test
+    public void gameIsOverReturnsFalseWhenQintIsTooBig(){
+        assertEquals(true, gameService.isOver(2));
+    }
+    
   
 
 }
