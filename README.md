@@ -9,7 +9,7 @@ TriviaApp on peli, jossa pelaajalta kysytään triviatietoutta mittaavia kysymyk
 
 [Alustava vaatimusmäärittely](https://github.com/ruuskal/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[Luokkakaavio](https://github.com/ruuskal/ot-harjoitustyo/tree/master/dokumentaatio/arkkitehtuuri.md)
+[Arkkitehtuurikuvaus](https://github.com/ruuskal/ot-harjoitustyo/tree/master/dokumentaatio/arkkitehtuuri.md)
 ## Testaus
 
 Sovelluksen testit suoritetaan komennollaa "mvn test" ja testikattavuusraportti
