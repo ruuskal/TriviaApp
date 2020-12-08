@@ -12,5 +12,6 @@ Päivä  | Aika    | Kuvaus
 1.12. | 3 | Koodin selkeyttäminen, pistesysteemin luominen, jar:n luominen
 2.12. | 5 | Luokka- ja sekvenssikaavioiden luominen, yritys saada ohjelma lukemaan tiedostosta, testien lisäys
 7.12. | 6 | Pisteiden tilastoinnin luominen
+8.12. | 8 | Testien ja javadocin työstäminen, release, koodin selkeyttäminen
 ----- |---- | ------
-Yht. | 33 
+Yht. | 41 

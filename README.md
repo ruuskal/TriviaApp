@@ -21,3 +21,9 @@ luodaan komennolla "mvn jacoco:report".
 Tiedostoon checkstyle.xml määrittelemät tarkastukset voidaan suorittaa komennolla 
 "mvn jxr:jxr checkstyle:checkstyle".
 
+## Jarin generointi
+
+Suoritettavan jar-tiedoston voi generoida komennolla "mvn package".
+
+## Releset
+[Viikko 6](https://github.com/ruuskal/ot-harjoitustyo/releases/tag/viikko6)
