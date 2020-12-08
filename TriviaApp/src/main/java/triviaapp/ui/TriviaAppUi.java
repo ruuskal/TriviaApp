@@ -17,7 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import triviaapp.dao.FileQuestionDao;
-import triviaapp.dao.PlayerDao;
+import triviaapp.dao.FilePlayerDao;
 import triviaapp.domain.GameService;
 import triviaapp.domain.Player;
 
@@ -38,7 +38,7 @@ public class TriviaAppUi extends Application{
 //        properties.load(new FileInputStream("/resources/config.properties"));
         properties.load(stream);
         String topPlayersFile = properties.getProperty("players");
-        PlayerDao playerdao = new PlayerDao(topPlayersFile);
+        FilePlayerDao playerdao = new FilePlayerDao(topPlayersFile);
         
         InputStream input = TriviaAppUi.class.getResourceAsStream("/questions.txt");
         Player testPlayer = new Player ("Tester");
@@ -93,7 +93,7 @@ public class TriviaAppUi extends Application{
                BorderPane gameView = new BorderPane();
                gameView.setPrefSize(300, 200);
                gameView.setPadding(new Insets(10, 10, 10, 10));
-               gameView.setTop(new Label("Question: " + gameService.getNextQuestion(currentQuestion)));
+               gameView.setTop(new Label("Question: " + gameService.getContent(currentQuestion)));
 
                startButton.setText("Next!!");
                gameView.setRight(startButton);

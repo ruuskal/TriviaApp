@@ -22,8 +22,9 @@ public class GameServiceTest {
     @Before
     public void setUp(){
         player = new Player ("test");
-        List <Question> questions=new ArrayList<>();
-        List <String> optionsZero=new ArrayList<>();
+        
+        List <Question> questions = new ArrayList<>();
+        List <String> optionsZero = new ArrayList<>();
         optionsZero.add("1");
         optionsZero.add("2");
         optionsZero.add("3");
@@ -33,47 +34,44 @@ public class GameServiceTest {
         optionsOne.add("b");
         optionsOne.add("c");
         this.questionOne = new Question("Which is a", optionsOne, "a");
+        
+        List <String> topScores = new ArrayList<>();
+        FakePlayerDao playerdao = new FakePlayerDao(topScores);
                 
         questions.add(questionZero);
         questions.add(questionOne);
         
-        gameService=new GameService(new FakeQuestionDao(questions), player);
+        gameService = new GameService(new FakeQuestionDao(questions), player, playerdao);
     }
-      
-  
-//    @Test
-//    public void isCorrectReturnsTrueWhenCorrect(){
-//        assertTrue(gameService.isCorrect(0, "2"));
-//    }
+
     @Test
-    public void isCorrectAddsPointsWhenRight(){
+    public void isCorrectAddsPointsWhenRight() {
         gameService.isCorrect("2", 0);
         assertEquals(10, player.getPoints());
     }
     
     @Test
-    public void isCorrectDontAddPointsWhenNotCorrect(){
+    public void isCorrectDoesntAddPointsWhenNotCorrect() {
         gameService.isCorrect("5", 0);
         assertEquals(0, player.getPoints());
     }
     
     @Test
-    public void isCorrectSetsQuestionAnswered(){
+    public void isCorrectSetsQuestionAnswered() {
         gameService.isCorrect("2", 0);
         assertEquals(true, questionZero.isAnswered());
     }
     
-    
     @Test 
-    public void questionListsizeIsCorrect(){
+    public void questionListsizeIsCorrect() {
         assertEquals(2, gameService.getQuestionsSize());
     }
     
     @Test
-    public void gameIsOverReturnsFalseWhenQintIsTooBig(){
+    public void isOverReturnsFalseWhenQuestionIndexIsTooBig() {
         assertEquals(true, gameService.isOver(2));
     }
     
-  
-
+    
+    
 }

@@ -1,7 +1,7 @@
 package triviaapp.domain;
 
 import java.io.IOException;
-import java.util.List;
+import triviaapp.dao.FilePlayerDao;
 import triviaapp.dao.PlayerDao;
 import triviaapp.dao.QuestionDao;
 
@@ -19,18 +19,14 @@ public class GameService {
     
     public String getTopScore()  {
   
-        try {
-            //            String [] parts = playerdao.readFile(10).split("\n");
+        //            String [] parts = playerdao.readFile(10).split("\n");
 //            for (int i = 0; i < 5; i++ ) {
 //                String name = parts[i].split(";")[0];
 //                String points = parts[i].split(";")[1].trim();
 //                int p = Integer.valueOf(points);
 //                topScores.put(points, name);
 //            }
-            return playerdao.readFile(10);
-        } catch (IOException ex) {
-            return "Exception : " + ex;
-        }
+        return playerdao.readFile(10);
 
     }
     
@@ -42,22 +38,29 @@ public class GameService {
 //    }
         
     public void addScore(String name, int points) throws IOException {
-
-        for (int j = 0; j<5; j++){
-            String[] best = playerdao.readFile(j).split(";");
-            String p = best[1].trim();
-            int bestPoints = Integer.valueOf(p);
-            if(points >= bestPoints) {
-                playerdao.writeToFile(name, points);
-                break;
-            } else {
-                System.out.println("ei parhaita pisteitä"); //väliaikainen ratkaisu
-            }
-        }
+        
+        playerdao.writeToFile(name, points);
+//
+//        for (int j = 0; j < 5; j++) {
+//            String[] best = playerdao.readFile(j).split(";");
+//            String p = best[1].trim();
+//            int bestPoints = Integer.valueOf(p);
+//            if (points >= bestPoints) {
+//                playerdao.writeToFile(name, points);
+//                break;
+//            } else {
+//                System.out.println("ei parhaita pisteitä"); //väliaikainen ratkaisu
+//            }
+//        }
    
       
     }
     
+    /**
+     * 
+     * @param i viimeksi kysytyn kykymyksen indeksi
+     * @return true, jos kysymyksiä ei ole enempää
+     */
     public boolean isOver(int i) {
         if (i >= this.questiondao.getQuestionSize() - 1) {
             return true;
@@ -66,34 +69,50 @@ public class GameService {
         }
     }
     
+    /**
+     * 
+     * @return pelaajan ansaitsemat pisteet
+     */
     public int getPoints() {
         return player.getPoints();
     }
     
+    /**
+     * hakee kysymysosan tietylle kysymykselle
+     * @param i kysymyksen indeksi
+     * @return kysymyksen kysymysosa
+     */
     public String getContent(int i) {
         String questionContent = questiondao.getQuestion(i).getContent();
         return questionContent;
     }
-        
-    public List getOptions(int i) {
-        List options = questiondao.getQuestion(i).getOptions();
-        return options;
-    }
-    
-        
-    public String getNextQuestion(int i) {
-        String question = questiondao.getQuestion(i).getContent();
-        return question;
-    }
-       
+
+
+    /**
+     * 
+     * @param questionInt kysymyksen indeksi
+     * @param optionInt vaihtoehdon indeksi
+     * @return  vastausvaihtoehto
+     */  
     public String getOption(int questionInt, int optionInt) {
         return questiondao.getQuestion(questionInt).getOptions().get(optionInt).toString();
     }
-         
+    
+    /**
+     * 
+     * @param i kysymyksen indeksi
+     * @return true, jos kysymykseen on jo vastattu
+     */
     public boolean hasBeenAnswered(int i) {
         return questiondao.getQuestion(i).isAnswered();
     }
-        
+    
+    /**
+     * 
+     * @param answer syötetty vastaus
+     * @param i kysymyksen indeksi
+     * @return  true, jos vastaus on oikea
+     */
     public boolean isCorrect(String answer, int i) {
         questiondao.getQuestion(i).setAnswered();
         String rigthAnswer = questiondao.getQuestion(i).getAnswer();
@@ -104,18 +123,22 @@ public class GameService {
             return false;
         }
     }
-        
+    
+    /**
+     * Hakee oikean vastauksen kysymykseen
+     * @param i kysymyksen indeksi
+     * @return oikea vastaus
+     */
     public String getCorrect(int i) {
         String correct = questiondao.getQuestion(i).getAnswer();
         return correct;
     }
-    
+    /**
+     *
+     * @return Pelin kysymysten määrä 
+     */
     public int getQuestionsSize() {
         return questiondao.getQuestionSize();
     }
     
-    public String getQuestionText(int i) {
-        String question = questiondao.getQuestion(i).getContent();
-        return question;
-    }
 }
