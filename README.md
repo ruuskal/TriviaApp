@@ -4,6 +4,7 @@
 TriviaApp on peli, jossa pelaajalta kysytään triviatietoutta mittaavia kysymyksiä. Jokaiseen kysymykseen annetaan vastausvaihtoehdot ja oikea vastaus tuo pelaajalle pisteitä.
 
 ## Dokumentaatio
+[Alustava käyttöohje](https://github.com/ruuskal/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 
 [Työaikakirjanpito](https://github.com/ruuskal/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 

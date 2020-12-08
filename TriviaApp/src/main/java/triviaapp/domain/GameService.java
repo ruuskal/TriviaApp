@@ -1,16 +1,61 @@
 package triviaapp.domain;
 
+import java.io.IOException;
 import java.util.List;
+import triviaapp.dao.PlayerDao;
 import triviaapp.dao.QuestionDao;
 
 public class GameService {
     
     private QuestionDao questiondao;
     private Player player;
+    private PlayerDao playerdao;
     
-    public GameService(QuestionDao questiondao, Player player) {
+    public GameService(QuestionDao questiondao, Player player, PlayerDao playerdao) {
         this.questiondao = questiondao;
         this.player = player;
+        this.playerdao = playerdao;
+    }
+    
+    public String getTopScore()  {
+  
+        try {
+            //            String [] parts = playerdao.readFile(10).split("\n");
+//            for (int i = 0; i < 5; i++ ) {
+//                String name = parts[i].split(";")[0];
+//                String points = parts[i].split(";")[1].trim();
+//                int p = Integer.valueOf(points);
+//                topScores.put(points, name);
+//            }
+            return playerdao.readFile(10);
+        } catch (IOException ex) {
+            return "Exception : " + ex;
+        }
+
+    }
+    
+//    public void sortTopScores(Map map){
+//        
+//        List <String> list = new ArrayList <>(map.keySet());
+//        Collections.sort(list);
+//        System.out.println(list);
+//    }
+        
+    public void addScore(String name, int points) throws IOException {
+
+        for (int j = 0; j<5; j++){
+            String[] best = playerdao.readFile(j).split(";");
+            String p = best[1].trim();
+            int bestPoints = Integer.valueOf(p);
+            if(points >= bestPoints) {
+                playerdao.writeToFile(name, points);
+                break;
+            } else {
+                System.out.println("ei parhaita pisteitä"); //väliaikainen ratkaisu
+            }
+        }
+   
+      
     }
     
     public boolean isOver(int i) {
@@ -21,7 +66,6 @@ public class GameService {
         }
     }
     
-        
     public int getPoints() {
         return player.getPoints();
     }

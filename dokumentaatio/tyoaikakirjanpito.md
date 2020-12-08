@@ -11,5 +11,6 @@ Päivä  | Aika    | Kuvaus
 30.11. | 2 | Koodin selkeyttäminen
 1.12. | 3 | Koodin selkeyttäminen, pistesysteemin luominen, jar:n luominen
 2.12. | 5 | Luokka- ja sekvenssikaavioiden luominen, yritys saada ohjelma lukemaan tiedostosta, testien lisäys
+7.12. | 6 | Pisteiden tilastoinnin luominen
 ----- |---- | ------
-Yht. | 27 
+Yht. | 33 
