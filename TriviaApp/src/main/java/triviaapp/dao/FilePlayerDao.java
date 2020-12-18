@@ -1,24 +1,46 @@
 package triviaapp.dao;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import triviaapp.domain.Player;
 
 
 public class FilePlayerDao implements PlayerDao {
     private String file;
+    ArrayList <Player> players;
     
     public FilePlayerDao(String file) {
         this.file = file;
+        players = new ArrayList<>();
+        
+        try {
+            Scanner reader = new Scanner(new File(file));
+            while (reader.hasNextLine()) {
+                String [] parts = reader.nextLine().split(";");
+                Player p = new Player();
+                p.setName(parts[0]);
+                if (!parts[1].isEmpty()) {
+                    p.setPoints(Integer.valueOf(parts[1]));
+                } else {
+                    p.setPoints(0);
+                }
+                players.add(p);
+            
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Exception : " + ex);
+        }
     }
    
     @Override
     public void writeToFile(String name, int points) {
         try {
             FileWriter writer = new FileWriter(this.file, true);
-            writer.write(name + ";" + points + "\n");
+            writer.write("\n" + name + ";" + points);
             writer.close();
         } catch (Exception e) {
             System.out.println("Exception " + e);
@@ -26,34 +48,7 @@ public class FilePlayerDao implements PlayerDao {
     }
     
     @Override
-    public String readFile(int howMany) {
-        try {
-            String line = "";
-            String lineToAdd = "";
-            FileReader reader = new FileReader(this.file);
-            BufferedReader br = new BufferedReader(reader);
-            int i = 0;
-            
-            while (i < howMany) {
-                lineToAdd = br.readLine();
-                line = line + lineToAdd + "\n";
-                i++;
-            }
-            return line;
-        
-        } catch (Exception e) {
-            return "Exception "+ e;
-        }
-//        FileReader fr = new FileReader(this.file);
-//        BufferedReader br = new BufferedReader(fr);  
-//        StringBuffer sb =new StringBuffer();    
-//        String line = "";  
-//        
-//        while((line = br.readLine()) != null) {  
-//            sb.append(line);  
-//            sb.append("\n");      
-//        }      
-//          return line;
-    }
-    
+    public List readFile() {
+        return this.players;
+    }  
 }

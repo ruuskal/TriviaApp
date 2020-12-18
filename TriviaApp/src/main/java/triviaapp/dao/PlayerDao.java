@@ -5,10 +5,12 @@
  */
 package triviaapp.dao;
 
+import java.util.List;
+
 
 public interface PlayerDao {
     
-    String readFile(int i);
+    List readFile();
     
     void writeToFile(String s, int i);
 }
