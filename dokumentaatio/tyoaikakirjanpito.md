@@ -13,5 +13,9 @@ Päivä  | Aika    | Kuvaus
 2.12. | 5 | Luokka- ja sekvenssikaavioiden luominen, yritys saada ohjelma lukemaan tiedostosta, testien lisäys
 7.12. | 6 | Pisteiden tilastoinnin luominen
 8.12. | 8 | Testien ja javadocin työstäminen, release, koodin selkeyttäminen
+15.12. | 3 | Käyttöliittymän muokkaus
+16.12. | 6 | Käyttöliittymän muokkaus
+17.12. | 9 | Käyttöliittymän muokkaus ja pistetilastoinnin parantelu
+18.12. | 9 | Ohjelman viimeiset parantelut ja dokumentointi
 ----- |---- | ------
-Yht. | 41 
+Yht. | 68
