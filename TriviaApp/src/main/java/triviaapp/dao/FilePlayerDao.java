@@ -23,10 +23,10 @@ public class FilePlayerDao implements PlayerDao {
                 String [] parts = reader.nextLine().split(";");
                 Player p = new Player();
                 p.setName(parts[0]);
-                if (!parts[1].isEmpty()) {
-                    p.setPoints(Integer.valueOf(parts[1]));
-                } else {
+                if (parts[1].isEmpty()) {
                     p.setPoints(0);
+                } else {
+                    p.setPoints(Integer.valueOf(parts[1]));
                 }
                 players.add(p);
             

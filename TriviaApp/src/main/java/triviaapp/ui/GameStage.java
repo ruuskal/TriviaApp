@@ -1,5 +1,6 @@
 package triviaapp.ui;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -37,14 +38,14 @@ public class GameStage extends Stage {
             
             @Override
             public void handle(ActionEvent e) {
-                
-                if (gameService.isOver() == true) {
-                    int points = gameService.getPoints();
+                boolean gameOver = gameService.areThereMoreQuestions();
+                if (gameOver == false) {
+                    
                     new EndStage(gameService);
                     stop();
 
                     
-                } else if (gameService.isOver() == false ) {
+                } else if (gameOver == true ) {
                 
                     gameService.moveToNextQuestion();
                     gameView.setCenter(setQuestion());
@@ -70,25 +71,25 @@ public class GameStage extends Stage {
         Label resultText = new Label();
         options.addRow(0, question);
         options.addRow(5, resultText);
+        SimpleBooleanProperty isDisabled = new SimpleBooleanProperty();
         
         for (int i = 0; i < 4; i++) {
 
             String optionText = gameService.getOption(i);
             Button option = new Button(optionText);
             options.addRow(i+1, option);
-                    
+            option.disableProperty().bind(isDisabled);
+            
             option.setOnAction(eh ->{
-                    
-                if (gameService.hasBeenAnswered() == false) {
-                    if (gameService.isCorrect(option.getText())) {
-                        resultText.setText("Correct!");
-                    } else {
+                isDisabled.setValue(true);
+                if(gameService.answerQuestion(optionText) == true) {
+                    resultText.setText("Correct!");
+                } else {
                         resultText.setText("Wrong! The correct answer is " + gameService.getCorrect() );
                     }
-                }
-        
+                
             });
-               
+            
         }
                 
         return this.options;

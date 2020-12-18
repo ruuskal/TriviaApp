@@ -1,5 +1,5 @@
 
-package triviaapp.domain;
+package triviaapp.dao;
 
 import java.util.List;
 

@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import triviaapp.domain.Question;
 
 
 public class FileQuestionDao implements QuestionDao {

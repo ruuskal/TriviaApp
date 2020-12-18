@@ -1,9 +1,11 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import triviaapp.domain.Question;
+import triviaapp.dao.Question;
 
 public class QuestionTest {
     

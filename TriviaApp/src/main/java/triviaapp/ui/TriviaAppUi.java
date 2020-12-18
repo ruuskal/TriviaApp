@@ -28,9 +28,9 @@ public class TriviaAppUi extends Application {
         FilePlayerDao playerdao = new FilePlayerDao(topPlayersFile);
         
         InputStream input = TriviaAppUi.class.getResourceAsStream("/questions.txt");
-        Player testPlayer = new Player ();
+        Player player = new Player ();
         FileQuestionDao fileQuestion = new FileQuestionDao(input);
-        gameService = new GameService(fileQuestion, testPlayer, playerdao);
+        gameService = new GameService(fileQuestion, player, playerdao);
     }
     
     @Override

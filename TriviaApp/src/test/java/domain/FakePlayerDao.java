@@ -1,22 +1,30 @@
+package domain;
+
 
 
 import java.util.List;
+import org.junit.Before;
 import triviaapp.dao.PlayerDao;
+import triviaapp.domain.Player;
 
 
 public class FakePlayerDao implements PlayerDao{
-    private List<String> topScores;
+    private List<Player> scoreBoard;
     
     public FakePlayerDao (List list){
-        this.topScores = list;
+        this.scoreBoard = list;
+    }
+       
+    @Override
+    public List readFile(){
+        return this.scoreBoard;
     }
     
-        
-    public String readFile(int howMany){
-        return "file";
-    }
-    
-    public void writeToFile(String s, int i){
-        
+    @Override
+    public void writeToFile(String name, int points){
+        Player p = new Player();
+        p.setPoints(points);
+        p.setName(name);
+        this.scoreBoard.add(p);
     }
 }
