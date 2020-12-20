@@ -31,3 +31,5 @@ Sovellukselle voidaan generoida JavaDoc komennolla **mvn javadoc:javadoc** ja si
 
 ## Releset
 [Viikko 6](https://github.com/ruuskal/ot-harjoitustyo/releases/tag/viikko6)
+
+[Loppupalautus](https://github.com/ruuskal/TriviaApp/releases/tag/loppupalauts)
