@@ -17,5 +17,6 @@ Päivä  | Aika    | Kuvaus
 16.12. | 6 | Käyttöliittymän muokkaus
 17.12. | 9 | Käyttöliittymän muokkaus ja pistetilastoinnin parantelu
 18.12. | 9 | Ohjelman viimeiset parantelut ja dokumentointi
------ |---- | ------
-Yht. | 68
+19.12. | 1 | Hienosäätöä
+20.12. | 5 | Testausta, dokumentointia, Javadoc
+Yht. | 74

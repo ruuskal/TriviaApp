@@ -1,10 +1,15 @@
 package triviaapp.dao;
 
+import triviaapp.domain.Question;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Vastaa Question-olioiden lukemisesta tiedostosta.
+ * 
+ */
 
 public class FileQuestionDao implements QuestionDao {
     
@@ -27,7 +32,7 @@ public class FileQuestionDao implements QuestionDao {
                 String answer = parts[2];
                 String [] optionParts = parts[1].split(",");
             
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < optionParts.length; i++) {
                     options.add(optionParts[i]);
                 }
                 questions.add(new Question(content, options, answer));

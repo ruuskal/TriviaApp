@@ -8,15 +8,33 @@ import java.util.List;
 import java.util.Scanner;
 import triviaapp.domain.Player;
 
-
+/**
+ * Vastaa Player-olioiden tiedostosta lukemisesta ja tallentamisesta.
+ * 
+ */
 public class FilePlayerDao implements PlayerDao {
     private String file;
-    ArrayList <Player> players;
+    ArrayList<Player> players;
     
     public FilePlayerDao(String file) {
         this.file = file;
         players = new ArrayList<>();
-        
+    }
+   
+    @Override
+    public void writeToFile(String name, int points) {
+        try {
+            FileWriter writer = new FileWriter(this.file, true);
+            writer.write("\n" + name + ";" + points);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Exception " + e);
+        }
+    }
+    
+    @Override
+    public List readFile() {
+
         try {
             Scanner reader = new Scanner(new File(file));
             while (reader.hasNextLine()) {
@@ -34,21 +52,6 @@ public class FilePlayerDao implements PlayerDao {
         } catch (FileNotFoundException ex) {
             System.out.println("Exception : " + ex);
         }
-    }
-   
-    @Override
-    public void writeToFile(String name, int points) {
-        try {
-            FileWriter writer = new FileWriter(this.file, true);
-            writer.write("\n" + name + ";" + points);
-            writer.close();
-        } catch (Exception e) {
-            System.out.println("Exception " + e);
-        }
-    }
-    
-    @Override
-    public List readFile() {
         return this.players;
     }  
 }

@@ -1,9 +1,11 @@
 
-package triviaapp.dao;
+package triviaapp.domain;
 
 import java.util.List;
 
-
+/**
+ * Kysymystä kuvaava luokka
+ */
 public class Question {
     
     private String content;
@@ -33,5 +35,9 @@ public class Question {
     
     public boolean isAnswered() {
         return this.answered;
+    }
+    
+    public int getOptionsSize() {
+        return this.options.size();
     }
 }

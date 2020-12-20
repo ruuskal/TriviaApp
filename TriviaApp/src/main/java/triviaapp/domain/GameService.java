@@ -6,30 +6,35 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import triviaapp.dao.PlayerDao;
-import triviaapp.dao.Question;
 import triviaapp.dao.QuestionDao;
+
+/**
+ * Sovelluslogiikasta vastaava luokka.
+ */
 
 public class GameService {
     
     private QuestionDao questiondao;
-    private Player player;
+    private int playersPoints;
     private PlayerDao playerdao;
     private int currentQuestionIdx;
+    private Question currentQuestion;
     
-    public GameService(QuestionDao questiondao, Player player, PlayerDao playerdao) {
+    public GameService(QuestionDao questiondao, PlayerDao playerdao) {
         this.questiondao = questiondao;
-        this.player = player;
+        this.playersPoints = 0;
         this.playerdao = playerdao;
-        this.currentQuestionIdx = 0;
-        
+        this.currentQuestionIdx = -1;
     }
     
-  
+  /**
+   * Hakee pistetilaston ja järjestää sen parhaimmasta huonoimpaan pelaajaan
+   * @return pistetilasto listana
+   */
     public List getSortedScoreBoard() {
         
-        List <Player> list = this.playerdao.readFile();
-        
-        List <Player> sortedList = list.stream()
+        List<Player> list = this.playerdao.readFile();
+        List<Player> sortedList = list.stream()
                 .sorted(Comparator.comparingInt(Player::getPoints))
                         .collect(Collectors.toList());
         sortedList.stream().forEach(p -> p.toString());
@@ -42,9 +47,12 @@ public class GameService {
         playerdao.writeToFile(name, points);
     }
 
-    
+    /**
+     * Tarkistaa, onko QuestionDao-olennolla kysymyksiä jäljellä.
+     * @return true jos kysymyksiä on, muuten false
+     */
     public boolean areThereMoreQuestions() {
-        if (this.currentQuestionIdx < questiondao.getQuestionSize() - 1 ) {
+        if (this.currentQuestionIdx < questiondao.getQuestionSize() - 1) {
             return true;
         } else {
             return false;
@@ -52,47 +60,41 @@ public class GameService {
     }
     
     public int getPoints() {
-        return player.getPoints();
+        return this.playersPoints;
     }
     
     /**
-     * hakee kysymysosan tietylle kysymykselle
+     * hakee kysymysosan kysymykselle.
      * @return kysymyksen kysymysosa
      */
     public String getContent() {
-        String questionContent = questiondao.getQuestion(currentQuestionIdx).getContent();
+        String questionContent = this.currentQuestion.getContent();
         return questionContent;
     }
     
     /**
-     * 
-     * @param questionInt kysymyksen indeksi
+     * Hakee yhden vastausvaihtoehdon.
      * @param optionInt vaihtoehdon indeksi
      * @return  vastausvaihtoehto
      */  
     public String getOption(int optionInt) {
-        return questiondao.getQuestion(currentQuestionIdx).getOptions().get(optionInt).toString();
+        return this.currentQuestion.getOptions().get(optionInt).toString();
     }
-    
+  
     /**
-     * @return true, jos kysymykseen on jo vastattu
-     */
-    public boolean hasBeenAnswered() {
-        return questiondao.getQuestion(currentQuestionIdx).isAnswered();
-    }
-    /**
+     * Asettaa kysymyksen vastatuksi, jos siihen ei ole jo vastattu.
      * Palauttaa true vain jos vastaus on oikein ja siihen ei ole jo vastattu. 
      * Muuten palauttaa false.
      * @param answer pelaajan vastaus
      * @return false, jos on jo vastattu tai jos vastaus on väärin, muuten true.
      */
     public boolean answerQuestion(String answer) {
-        if(hasBeenAnswered() == true) {
+        if (this.currentQuestion.isAnswered() == true) {
             return false;
         } else {
-            questiondao.getQuestion(currentQuestionIdx).setAnswered();
+            this.currentQuestion.setAnswered();
             if (isCorrect(answer) == true) {
-                player.addPoints(10);
+                this.playersPoints += 10;
                 return true;
             } else {
                 return false;
@@ -101,27 +103,37 @@ public class GameService {
     }
     
     /**
+     * Tarkistaa onko vastaus oikein.
      * 
-     * @param answer pelaajan vastaus
-     * @return  true, jos vastaus on oikea
      */
     public boolean isCorrect(String answer) {
-        String rigthAnswer = questiondao.getQuestion(currentQuestionIdx).getAnswer();
+        String rigthAnswer = currentQuestion.getAnswer();
         if (answer.trim().matches(rigthAnswer)) {
             return true;
         } else {
             return false;
         }
     }
-    
+    /**
+     * Hakee oikean vastauksen. 
+     * 
+     */
     public String getCorrect() {
-        String correct = questiondao.getQuestion(currentQuestionIdx).getAnswer();
+        String correct = currentQuestion.getAnswer();
         return correct;
-    }
-//    
+    }   
     
+    /**
+     * Hakee seuraavan kysymyksen QuestionDaolta.
+     */
     public void moveToNextQuestion() {
         this.currentQuestionIdx++;
+        this.currentQuestion = questiondao.getQuestion(currentQuestionIdx);
+        
+    }
+    
+    public int getOptionSize() {
+        return this.currentQuestion.getOptionsSize();
     }
     
     

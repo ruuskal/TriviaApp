@@ -12,6 +12,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import triviaapp.domain.GameService;
 
+/**
+ * Sisältää pelinääkymän.
+ * 
+ */
 public class GameStage extends Stage {
     
     GameService gameService;
@@ -20,32 +24,31 @@ public class GameStage extends Stage {
     Button nextButton = new Button("Next!");
     GridPane options;
     
-    
-    public GameStage (GameService service) {
+    public GameStage(GameService service) {
         
         this.gameService = service;
        
         gameView.setRight(nextButton);        
-        gameView.setPrefSize(500, 200);
+        gameView.setPrefSize(450, 400);
         gameView.setPadding(new Insets(10, 10, 10, 10));
-        
-        nextButton.fire();
 
         this.setScene(new Scene(gameView));
         this.show();
         
         nextButton.setOnAction(new EventHandler<ActionEvent>() {
-            
+            /**
+             * Tarkistaa onko kysymyksiä lisää.
+             */
             @Override
             public void handle(ActionEvent e) {
-                boolean gameOver = gameService.areThereMoreQuestions();
-                if (gameOver == false) {
+                boolean moreQuestions = gameService.areThereMoreQuestions();
+                if (moreQuestions == false) {
                     
                     new EndStage(gameService);
                     stop();
 
                     
-                } else if (gameOver == true ) {
+                } else if (moreQuestions == true) {
                 
                     gameService.moveToNextQuestion();
                     gameView.setCenter(setQuestion());
@@ -53,43 +56,46 @@ public class GameStage extends Stage {
                 }
             }
         });
+        nextButton.fire();
     }
     
     
     public void stop() {
         this.close();
     }
-    
+    /**
+     * Hakee uuden kysymyksen ja asettelee sen näytölle.
+     */
     public GridPane setQuestion() {
-        
         options = new GridPane();
         options.setVgap(10);
         options.setHgap(10);
         gameView.setCenter(options);
         
+        int optionsSize = gameService.getOptionSize();
         Label question = new Label(gameService.getContent());
         Label resultText = new Label();
         options.addRow(0, question);
-        options.addRow(5, resultText);
+        options.addRow(optionsSize + 1, resultText);
         SimpleBooleanProperty isDisabled = new SimpleBooleanProperty();
         
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < optionsSize; i++) {
 
             String optionText = gameService.getOption(i);
             Button option = new Button(optionText);
-            options.addRow(i+1, option);
+            options.addRow(i + 1, option);
             option.disableProperty().bind(isDisabled);
-            
+            /**
+             * Ottaa parametrikseen pelaajan vastauksen ja tarkistuttaa sen.
+             */
             option.setOnAction(eh ->{
                 isDisabled.setValue(true);
                 if(gameService.answerQuestion(optionText) == true) {
                     resultText.setText("Correct!");
                 } else {
-                        resultText.setText("Wrong! The correct answer is " + gameService.getCorrect() );
-                    }
-                
+                    resultText.setText("Wrong! The correct answer is " + gameService.getCorrect() );
+                }
             });
-            
         }
                 
         return this.options;

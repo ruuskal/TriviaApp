@@ -5,7 +5,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import triviaapp.dao.Question;
+import triviaapp.domain.Question;
 
 public class QuestionTest {
     

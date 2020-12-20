@@ -2,6 +2,7 @@ package domain;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import triviaapp.dao.PlayerDao;
@@ -11,8 +12,10 @@ import triviaapp.domain.Player;
 public class FakePlayerDao implements PlayerDao{
     private List<Player> scoreBoard;
     
-    public FakePlayerDao (List list){
-        this.scoreBoard = list;
+
+    
+    public FakePlayerDao (){
+        this.scoreBoard = new ArrayList<>();
     }
        
     @Override

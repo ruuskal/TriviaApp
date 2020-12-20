@@ -6,4 +6,8 @@
 
 <suppressions>
     <suppress files="triviaapp.ui.TriviaAppUi.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="triviaapp.ui.EndStage.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="triviaapp.ui.GameStage.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="triviaapp.ui.ScoreStage.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="triviaapp.ui.StartStage.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
